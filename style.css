@@ -1,0 +1,22 @@
+@import url(http://fonts.googleapis.com/css?family=Average+Sans);
+
+body{ 
+  font-family: 'Average Sans', sans-serif;
+  font-size: 24px;
+  color: #222;
+}
+
+h1{ font-size: 48px; text-align: center; text-shadow: 2px 2px 4px #AAA;}
+h2{ font-size: 32px; text-shadow: 1px 1px 2px #AAA; }
+
+a{ color: #0ab; text-decoration: none; }
+
+section {
+  width: 450px;
+  margin: 50px;
+}
+
+ul {list-style: none;}
+
+li {background-color: rgba(255,50,50, .2);}
+li.accepted {background-color: rgba(0,250,0, .2);}

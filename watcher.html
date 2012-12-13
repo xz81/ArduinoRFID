@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>RFID Watcher</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script>
+		function poll() {
+			var url = "http://80.77.87.194/requests.json";
+			var now = new Date().getTime();
+			$.get(url+"/"+now, function(data) {
+				var obj = jQuery.parseJSON(data);
+				var list = "<h1>Access Log</h1><ul>";
+				// Visit non-inherited enumerable keys
+				Object.keys(obj).forEach(function(key) {
+					if (obj[key][2] == true) {
+					    list += "<li class='accepted'>"+obj[key][1]+" - "+obj[key][0]+"</li>";
+					}else{
+					    list += "<li>"+obj[key][1]+" - "+obj[key][0]+"</li>";
+					}
+				});
+				list += "</ul>";
+				$("section").html(list);
+			});
+		}
+
+		$(document).ready(function(){
+			setInterval(poll, 1000);
+		});
+	</script>
+</head>
+<body>
+	<section>
+	</section>
+</body>
+</html>
