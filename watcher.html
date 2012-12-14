@@ -6,13 +6,15 @@
 	<link rel="stylesheet" href="style.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script>
+		// jQuery based function which polls the server and builds an unordered list from the
+		// returned access log
 		function poll() {
-			var url = "http://80.77.87.194/requests.json";
+			// Change server url for your deployment
+			var url = "http://xxx.xxx.xxx.xxx/requests.json";
 			var now = new Date().getTime();
 			$.get(url+"/"+now, function(data) {
 				var obj = jQuery.parseJSON(data);
 				var list = "<h1>Access Log</h1><ul>";
-				// Visit non-inherited enumerable keys
 				Object.keys(obj).forEach(function(key) {
 					if (obj[key][2] == true) {
 					    list += "<li class='accepted'>"+obj[key][1]+" - "+obj[key][0]+"</li>";
@@ -24,7 +26,8 @@
 				$("section").html(list);
 			});
 		}
-
+		
+		// Poll server every second... could be done better, but this is simple.
 		$(document).ready(function(){
 			setInterval(poll, 1000);
 		});
